@@ -1,0 +1,37 @@
+let cordinates = [
+    {"uf":"TO","latitude":-8.77,"longitude":-70.55},
+    {"uf":"AL","latitude":-9.62,"longitude":-36.82},
+    {"uf":"AC","latitude":-8.65,"longitude":-70.01},
+    {"uf":"AM","latitude":-3.47,"longitude":-65.10},
+    {"uf":"AP","latitude":1.41,"longitude":-51.77},
+    {"uf":"BA","latitude":-13.29,"longitude":-41.71},
+    {"uf":"CE","latitude":-5.20,"longitude":-39.53},
+    {"uf":"DF","latitude":-15.83,"longitude":-47.86},
+    {"uf":"ES","latitude":-19.19,"longitude":-40.34},
+    {"uf":"GO","latitude":-15.98,"longitude":-49.86},
+    {"uf":"MA","latitude":-5.42,"longitude":-45.44},
+    {"uf":"MT","latitude":-12.64,"longitude":-55.42},
+    {"uf":"MS","latitude":-20.51,"longitude":-54.54},
+    {"uf":"MG","latitude":-18.10,"longitude":-44.38},
+    {"uf":"PA","latitude":-3.79,"longitude":-52.48},
+    {"uf":"PB","latitude":-7.28,"longitude":-36.72},
+    {"uf":"PR","latitude":-24.89,"longitude":-51.55},
+    {"uf":"PE","latitude":-8.38,"longitude":-37.86},
+    {"uf":"PI","latitude":-6.60,"longitude":-42.28},
+    {"uf":"RJ","latitude":-22.25,"longitude":-42.66},
+    {"uf":"RN","latitude":-5.81,"longitude":-36.59},
+    {"uf":"RO","latitude":-10.83,"longitude":-63.34},
+    {"uf":"RS","latitude":-30.17,"longitude":-53.50},
+    {"uf":"RR","latitude":1.99,"longitude":-61.33},
+    {"uf":"SC","latitude":-27.45,"longitude":-50.95},
+    {"uf":"SE","latitude":-10.57,"longitude":-37.45},
+    {"uf":"SP","latitude":-22.19,"longitude":-48.79},
+    {"uf":"TO","latitude":-9.46,"longitude":-48.26}]
+
+    const currentPositionCountry = {
+        latitude:-11.265109356202254,
+        longitude:-54.29489677771926,
+        latitudeDelta:70.35107716298356,
+        longitudeDelta:41.35656204074622,
+      }
+    export  {cordinates, currentPositionCountry};
