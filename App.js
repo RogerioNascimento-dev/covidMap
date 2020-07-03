@@ -13,8 +13,7 @@ export default function App() {
       <StatusBar backgroundColor="#FF101F" />
       <AppBotton />
     </NavigationContainer>
-    </>
-    
+    </>    
   );
 }
 
