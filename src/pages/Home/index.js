@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { View,Text,Image } from 'react-native';
 import MapView,{Marker,Callout} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native'
-import { AntDesign,MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { AntDesign,MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons'; 
 import styles from './styles';
 import api from '../../services/api'
 import {currentPositionCountry,cordinates} from '../../commons/cordinates';
@@ -48,8 +48,9 @@ const Home = () => {
                   <Text style={styles.stateName}>{state.state}</Text>
                   <Text style={styles.cases}><AntDesign name="frowno" size={15} color="#9fb5c8" /> {state.cases} Casos confirmados</Text>
                   <Text style={styles.cases}><MaterialCommunityIcons name="skull" size={15} color="#9fb5c8" /> {state.deaths} Óbitos confirmados</Text>
-                  <View style={{alignItems:'center',justifyContent:'center'}}>
+                  <View style={{alignItems:'center',justifyContent:'center',flexDirection:'row'}}>
                     <Text style={styles.cases}>Clique para ver mais</Text>
+                    <FontAwesome name="arrow-right" size={15} color="red" />
                   </View>
               </View>
             </Callout>

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
     callout:{
         width:230,
-    },
+    },    
     stateName:{
         color:'#FF101F',
         fontWeight:'bold',
@@ -24,7 +24,9 @@ const styles = StyleSheet.create({
     },
     cases:{
         fontSize:15,
-        color:'#9fb5c8'
+        fontWeight:'bold',
+        color:'#9fb5c8',     
+        marginRight:5,
     },    
 });
 
