@@ -1,19 +1,34 @@
 import React,{useEffect,useState} from 'react';
-import { View,Text,Image } from 'react-native';
+import { View,Text,Image,TouchableOpacity,ActivityIndicator } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {FontAwesome} from '@expo/vector-icons';
+
 import api from '../../services/api';
 
 import styles from './styles';
 
 const Single = ({route}) => {
+  const navigation = useNavigation();
   const {state:uf} = route.params;  
   const [state,setState] = useState([]);
+  const [loading,setLoading]  = useState(true);
+
   useEffect(() =>{    
     async function loadState(){
       const response = await api.get(`/api/report/v1/brazil/uf/${uf}`);               
       setState(response.data)
+      setLoading(false);
     }
     loadState()    
   },[uf])
+
+  if(loading){
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="red" />
+      </View>
+    )
+  }
   return (
   <View style={styles.container}>
     <View style={styles.containerData}>
@@ -21,28 +36,29 @@ const Single = ({route}) => {
         <Image style={styles.flag} source={{uri:`https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/${uf}.png`}} />
         <Text style={styles.stateText}>{state.state}</Text>
       </View>
-
-      <View style={styles.containerInfo}>
+      
         <View style={styles.containerInfoDetail}>
-          <Text style={{color:'#9fb5c8'}}>Casos:</Text>
-          <Text style={{color:'#9fb5c8'}}>{state.cases}</Text>
+          <Text style={styles.textInfo}>Casos:</Text>
+          <Text style={styles.textInfo}>{state.cases}</Text>
         </View>
         <View style={styles.containerInfoDetail}>
-          <Text style={{color:'#9fb5c8'}}>Mortos:</Text>
-          <Text style={{color:'#9fb5c8'}}>{state.deaths}</Text>
+          <Text style={styles.textInfo}>Mortos:</Text>
+          <Text style={styles.textInfo}>{state.deaths}</Text>
         </View>
         <View style={styles.containerInfoDetail}>
-          <Text style={{color:'#9fb5c8'}}>Suspeitos:</Text>
-          <Text style={{color:'#9fb5c8'}}>{state.suspects}</Text>
+          <Text style={styles.textInfo}>Suspeitos:</Text>
+          <Text style={styles.textInfo}>{state.suspects}</Text>
         </View>
         <View style={styles.containerInfoDetail}>
-          <Text style={{color:'#9fb5c8'}}>Negativo:</Text>
-          <Text style={{color:'#9fb5c8'}}>{state.refuses}</Text>
-        </View>
+          <Text style={styles.textInfo}>Negativo:</Text>
+          <Text style={styles.textInfo}>{state.refuses}</Text>
+        </View>        
       </View>
-    </View>
-  </View>    
+      <TouchableOpacity style={styles.bottomBack} onPress={() => navigation.goBack()}>
+        <FontAwesome name="arrow-left" size={15} color="red" />
+        <Text style={styles.bottomBackText}>Voltar</Text>          
+      </TouchableOpacity>
+    </View>  
   );
 }
-
 export default Single;
