@@ -3,8 +3,6 @@ import { View,TouchableOpacity,ActivityIndicator,FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import api from '../../services/api';
 import ItemList from '../../components/ItemList';
-import Constants from 'expo-constants';
-
 
 const State = () => {
 
@@ -30,7 +28,7 @@ const State = () => {
     )
   }
   return (
-    <FlatList style={{marginTop:Constants.statusBarHeight}} 
+    <FlatList 
       data={dados}
       keyExtractor={es =>  `${es.uid}`}
       renderItem={({item}) =>{
@@ -41,9 +39,6 @@ const State = () => {
         )        
       }}
     />
-
-        
-    
   );
 }
 

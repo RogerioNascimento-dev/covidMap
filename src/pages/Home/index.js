@@ -7,7 +7,6 @@ import styles from './styles';
 import api from '../../services/api'
 import {currentPositionCountry,cordinates} from '../../commons/cordinates';
 
-
 const Home = () => {   
   const navigation = useNavigation();  
   const [dados,setDados] = useState([]);   
@@ -32,18 +31,17 @@ const Home = () => {
     loadStates();
   },[])
   return (
-    <View style={styles.container}>
+    <View style={styles.container}>          
         <MapView 
         style={styles.map}
         /*onRegionChangeComplete={handleRegionChange}*/
-        initialRegion={currentPositionCountry}>
-          
+        initialRegion={currentPositionCountry}>          
           {dados.map(state =>(
             <Marker key={`${state.uid}`} coordinate={state.coordenadas}>
             <Image style={styles.marker} source={{uri:`https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/${state.uf}.png`}} />
             <Callout onPress={() =>{
               navigation.navigate('Single',{state:state.uf})
-            }}>
+            }}>              
               <View style={styles.callout}>
                   <Text style={styles.stateName}>{state.state}</Text>
                   <Text style={styles.cases}><AntDesign name="frowno" size={15} color="#9fb5c8" /> {state.cases} Casos confirmados</Text>
@@ -55,9 +53,9 @@ const Home = () => {
               </View>
             </Callout>
           </Marker>
-          ))}
+          ))}                     
         </MapView>
-    </View>    
+    </View>        
   );
 }
 
