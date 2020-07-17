@@ -1,9 +1,8 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import AppBotton from './src/routes/bottom.routes';
+import AppBotton from './src/routes/Bottom.routes';
 
 
 export default function App() {
