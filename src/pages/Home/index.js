@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { View,Text,Image } from 'react-native';
+import { View,Text,Image,TextInput,TouchableOpacity } from 'react-native';
 import MapView,{Marker,Callout} from 'react-native-maps';
 import {useNavigation} from '@react-navigation/native'
 import { AntDesign,MaterialCommunityIcons,FontAwesome } from '@expo/vector-icons'; 
@@ -9,7 +9,9 @@ import {currentPositionCountry,cordinates} from '../../commons/cordinates';
 
 const Home = () => {   
   const navigation = useNavigation();  
-  const [dados,setDados] = useState([]);   
+  const [dataApi,setDataApi] = useState([]);   
+  const [states,setStates] = useState([]);   
+  const [textFilter,setTextFilter] = useState('');
   
   function handleRegionChange(region){
     console.log(region);
@@ -26,22 +28,42 @@ const Home = () => {
             }
         })
       })    
-      setDados(data);
+      setDataApi(data);
+      setStates(data);
     }    
     loadStates();
   },[])
+
+  const handleButtonFilter = () =>{    
+    
+    if(textFilter.trim() === ""){
+      setStates(dataApi);
+      return;
+    }
+
+    let statesFilter = textFilter.split(',');
+    let statesFiltered = [];
+    statesFilter.map((obj) =>{
+      let dataApiFiltered = dataApi.filter((dado)=>{ 
+        return obj == dado.uf;  
+      })
+      statesFiltered.push(...dataApiFiltered)
+    })
+    setStates(statesFiltered);  
+  }
+
   return (
-    <View style={styles.container}>          
-        <MapView 
+    <>       
+        <MapView         
         style={styles.map}
         /*onRegionChangeComplete={handleRegionChange}*/
         initialRegion={currentPositionCountry}>          
-          {dados.map(state =>(
+          {states.map(state =>(
             <Marker key={`${state.uid}`} coordinate={state.coordenadas}>
             <Image style={styles.marker} source={{uri:`https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/${state.uf}.png`}} />
             <Callout onPress={() =>{
               navigation.navigate('Single',{state:state.uf})
-            }}>              
+            }}>                          
               <View style={styles.callout}>
                   <Text style={styles.stateName}>{state.state}</Text>
                   <Text style={styles.cases}><AntDesign name="frowno" size={15} color="#9fb5c8" /> {state.cases} Casos confirmados</Text>
@@ -53,9 +75,25 @@ const Home = () => {
               </View>
             </Callout>
           </Marker>
-          ))}                     
+          ))}      
         </MapView>
-    </View>        
+
+        <View style={styles.containerFilter}>
+          <TextInput 
+          placeholder="Filtrar Ex: SP,BA,AL..."
+          placeholderTextColor="#FFB0B5"
+          autoCapitalize="characters"
+          autoCorrect={false}          
+          onChangeText={(valor) => setTextFilter(valor)}
+          style={styles.inputFilter}
+          returnKeyType="search"
+          onSubmitEditing={handleButtonFilter} />  
+        
+          <TouchableOpacity style={styles.buttonFilter} onPress={handleButtonFilter}>
+              <FontAwesome color="red" size={20} name="filter" />
+          </TouchableOpacity>           
+        </View>  
+    </>        
   );
 }
 

@@ -54,6 +54,7 @@ const Single = ({route}) => {
           <Text style={styles.textInfo}>{state.refuses}</Text>
         </View>        
       </View>
+      
       <TouchableOpacity style={styles.bottomBack} onPress={() => navigation.goBack()}>
         <FontAwesome name="arrow-left" size={15} color="red" />
         <Text style={styles.bottomBackText}>Voltar</Text>          
