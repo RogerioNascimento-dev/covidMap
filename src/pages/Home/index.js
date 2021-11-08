@@ -58,8 +58,7 @@ const Home = () => {
   return (
     <>
       <MapView
-        style={styles.map}
-        /*onRegionChangeComplete={handleRegionChange}*/
+        style={styles.map}        
         initialRegion={currentPositionCountry}
       >
         {states.map((state) => (
